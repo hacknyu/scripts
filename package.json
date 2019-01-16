@@ -1,0 +1,9 @@
+{
+  "name": "hacknyu-admin",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "dependencies": {
+    "firebase-admin": "^6.5.0"
+  }
+}
