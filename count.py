@@ -2,6 +2,7 @@ import json
 from datetime import timedelta, date
 from dateutil import parser
 
+
 with open('data.json', 'r') as read_file:
     data = json.load(read_file)
 
