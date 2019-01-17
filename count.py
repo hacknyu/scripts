@@ -22,10 +22,19 @@ def is_under_18(uid, user, event_date = date(2019, 2, 15)):
         return True
 
 submitted = filter_dict(lambda uid, user: 'submitTimestamp' in user, data)
+
+nyu = filter_dict(lambda uid, user: 'nyuSchool' in user, submitted)
+shanghai = filter_dict(lambda uid, user: user['nyuSchool'] == 'shanghai', nyu)
+abu_dhabi = filter_dict(lambda uid, user: user['nyuSchool'] == 'abu-dhabi', nyu)
+
 postgrad = filter_dict(lambda uid, user: user['yearOfStudy'] == 'post-grad', submitted)
 under_18 = filter_dict(lambda uid, user: is_under_18(uid, user), submitted)
 
+
 print('Total: ' + str(len(data)))
 print('Submitted: ' + str(len(submitted)))
+print('NYU: ' + str(len(nyu)))
+print('  Abu Dhabi: ' + str(len(abu_dhabi)))
+print('  Shanghai: ' + str(len(shanghai)))
 print('Postgrad: ' + str(len(postgrad)))
 print('Under 18: ' + str(len(under_18)))
