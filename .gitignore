@@ -1,3 +1,4 @@
 certs.json
 data.json
 venv
+*.pickle
