@@ -9,8 +9,8 @@ def filter_dict(func, dictionary):
     filtered = filter(lambda item: func(*item), dictionary.items())
     return { key: value for key, value in filtered }
 
-def is_under_18(uid, user, event_date = date(2019, 2, 15)):
-    bday_str = user['birthDate']
+def is_under_18(uid, form, event_date = date(2019, 2, 15)):
+    bday_str = form['birthDate']
     earliest_bday = date(event_date.year - 18, event_date.month, event_date.day)
     try:
         bday = parser.parse(bday_str).date()
@@ -21,14 +21,14 @@ def is_under_18(uid, user, event_date = date(2019, 2, 15)):
         print('  uid: ' + str(uid))
         return True
 
-submitted = filter_dict(lambda uid, user: 'submitTimestamp' in user, data)
+submitted = filter_dict(lambda uid, form: 'submitTimestamp' in form, data)
 
-nyu = filter_dict(lambda uid, user: 'nyuSchool' in user, submitted)
-shanghai = filter_dict(lambda uid, user: user['nyuSchool'] == 'shanghai', nyu)
-abu_dhabi = filter_dict(lambda uid, user: user['nyuSchool'] == 'abu-dhabi', nyu)
+nyu = filter_dict(lambda uid, form: 'nyuSchool' in form, submitted)
+shanghai = filter_dict(lambda uid, form: form['nyuSchool'] == 'shanghai', nyu)
+abu_dhabi = filter_dict(lambda uid, form: form['nyuSchool'] == 'abu-dhabi', nyu)
 
-postgrad = filter_dict(lambda uid, user: user['yearOfStudy'] == 'post-grad', submitted)
-under_18 = filter_dict(lambda uid, user: is_under_18(uid, user), submitted)
+postgrad = filter_dict(lambda uid, form: form['yearOfStudy'] == 'post-grad', submitted)
+under_18 = filter_dict(lambda uid, form: is_under_18(uid, form), submitted)
 
 
 print('Total: ' + str(len(data)))

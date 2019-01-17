@@ -6,11 +6,9 @@ import json
 from datetime import datetime
 import inspect
 
-cred = credentials.Certificate('certs.json')
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://hacknyu-3e0c8.firebaseio.com'
-})
+from login import login
 
+login()
 db = firestore.client()
 id_to_user = {}
 
