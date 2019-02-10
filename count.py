@@ -35,7 +35,7 @@ def print_dict_counts(counts):
         print("  " + key + ": " + str(counts[key]))
 
 submitted = filter_dict(lambda uid, form: 'submitTimestamp' in form, data)
-
+typo = filter_dict(lambda uid, form: form['school'] == 'NYU' , submitted)
 nyu = filter_dict(lambda uid, form: 'nyuSchool' in form, submitted)
 shanghai = filter_dict(lambda uid, form: form['nyuSchool'] == 'shanghai', nyu)
 abu_dhabi = filter_dict(lambda uid, form: form['nyuSchool'] == 'abu-dhabi', nyu)
