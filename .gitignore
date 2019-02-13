@@ -3,3 +3,4 @@ data.json
 venv
 *.json
 *.pickle
+*.csv
